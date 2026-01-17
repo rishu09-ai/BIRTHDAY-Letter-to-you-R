@@ -1,66 +1,59 @@
-let page = 1;
-let finalFireworksInterval = null;
+/* ================= PAGE NAVIGATION ================= */
 
 function next() {
-  const current = document.getElementById("p" + page);
-  if (current) current.classList.remove("active");
+  const current = document.querySelector(".page.active");
+  if (!current) return;
 
-  page++;
+  current.classList.remove("active");
 
-  const nextPage = document.getElementById("p" + page);
-  if (nextPage) nextPage.classList.add("active");
-
-  // Start fireworks on final page
-  if (page === 5) startFinalFireworks();
+  const nextPage = current.nextElementSibling;
+  if (nextPage && nextPage.classList.contains("page")) {
+    nextPage.classList.add("active");
+  }
 }
 
-/* AUTO COUNTDOWN + AUTO NEXT */
+/* ================= COUNTDOWN ================= */
+
 function countdown() {
+  const hEl = document.getElementById("h");
+  const mEl = document.getElementById("m");
+  const sEl = document.getElementById("s");
+
+  if (!hEl || !mEl || !sEl) return;
+
   const now = new Date();
   let target = new Date(now.getFullYear(), 0, 18, 0, 0, 0);
   if (now > target) target.setFullYear(now.getFullYear() + 1);
 
-  const timer = setInterval(() => {
+  setInterval(() => {
     const diff = target - new Date();
 
-    if (diff <= 0) {
-      clearInterval(timer);
-      document.getElementById("h").innerText = "00";
-      document.getElementById("m").innerText = "00";
-      document.getElementById("s").innerText = "00";
-      setTimeout(next, 800); // AUTO NEXT 🎉
-      return;
-    }
+    const hours = Math.floor(diff / 3600000);
+    const minutes = Math.floor((diff / 60000) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
-    document.getElementById("h").innerText =
-      String(Math.floor(diff / 3600000)).padStart(2, "0");
-    document.getElementById("m").innerText =
-      String(Math.floor(diff / 60000) % 60).padStart(2, "0");
-    document.getElementById("s").innerText =
-      String(Math.floor(diff / 1000) % 60).padStart(2, "0");
+    hEl.textContent = String(hours).padStart(2, "0");
+    mEl.textContent = String(minutes).padStart(2, "0");
+    sEl.textContent = String(seconds).padStart(2, "0");
   }, 1000);
 }
+
 countdown();
 
-/* CAKE CUT */
+/* ================= CAKE CUT ================= */
+
 function cutCake() {
   const knife = document.querySelector(".knife");
   const slice = document.getElementById("slice");
 
-  knife.style.transition = "1s";
-  knife.style.left = "50px";
+  if (knife) knife.style.left = "50px";
+  if (slice) {
+    slice.style.opacity = "1";
+    slice.style.transform = "translateX(60px)";
+  }
 
-  slice.style.transition = "1s";
-  slice.style.opacity = "1";
-  slice.style.transform = "translateX(60px)";
-
-  burstFireworks();
-  setTimeout(next, 1500);
-}
-
-/* FIREWORKS */
-function burstFireworks() {
-  for (let i = 0; i < 35; i++) {
+  // Fireworks
+  for (let i = 0; i < 40; i++) {
     const f = document.createElement("div");
     f.className = "firework";
     f.style.left = "50%";
@@ -70,13 +63,6 @@ function burstFireworks() {
     document.body.appendChild(f);
     setTimeout(() => f.remove(), 1200);
   }
-}
 
-/* EXTRA FIREWORKS ON FINAL PAGE */
-function startFinalFireworks() {
-  if (finalFireworksInterval) return;
-
-  finalFireworksInterval = setInterval(() => {
-    burstFireworks();
-  }, 1800);
+  setTimeout(next, 1500);
 }
