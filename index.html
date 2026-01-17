@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Raushani 🎂</title>
+
+  <!-- SAME FONT AS IMAGE (MODERN UI) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- BACKGROUND NEON LINES -->
+<div class="lines">
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+</div>
+
+<!-- PAGE 1 : COUNTDOWN -->
+<section class="page active" id="p1">
+  <div class="card">
+    <h1>🎉 Birthday Countdown 🎉</h1>
+    <h2>Raushani ❤️</h2>
+
+    <div class="countdown">
+      <div><span id="h">00</span>Hours</div>
+      <div><span id="m">00</span>Minutes</div>
+      <div><span id="s">00</span>Seconds</div>
+    </div>
+
+    <button class="glow-btn" onclick="next()">Next ➡️</button>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section class="page" id="p2">
+  <div class="card">
+    <h1>💌 Happy Birthday 💌</h1>
+    <p class="letter">
+      You are not special just today,<br>
+      you are special every single day 💖<br><br>
+      Your smile makes everything brighter ✨
+    </p>
+    <button class="glow-btn" onclick="next()">Next ➡️</button>
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section class="page" id="p3">
+  <div class="card">
+    <h1>✨ A Message ✨</h1>
+    <p class="letter">
+      May your life be filled with love,<br>
+      happiness and beautiful moments 🌸
+    </p>
+    <button class="glow-btn" onclick="next()">Next ➡️</button>
+  </div>
+</section>
+
+<!-- PAGE 4 : CAKE -->
+<section class="page" id="p4">
+  <div class="card">
+    <h1>🎂 Cut the Cake 🎂</h1>
+
+    <div class="cake-area" onclick="cutCake()">
+      <div class="knife"></div>
+
+      <div class="cake">
+        <div class="icing"></div>
+        <div class="layer"></div>
+        <div class="layer"></div>
+        <div class="layer"></div>
+        <div class="candle">🕯️</div>
+      </div>
+
+      <div class="slice" id="slice"></div>
+    </div>
+
+    <p>Tap the cake 🎆</p>
+  </div>
+</section>
+
+<!-- PAGE 5 : FINAL -->
+<section class="page" id="p5">
+  <div class="card">
+    <h1>🎉 Happy Birthday Raushani 🎉</h1>
+    <p class="letter">
+      Dear Raushani ❤️<br><br>
+      May this year bring you<br>
+      endless happiness, success<br>
+      and love ✨<br><br>
+      Always stay smiling 💕
+    </p>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
